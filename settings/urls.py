@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.urls import path, include
 from users.routers import router
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='Pastebin API')
 
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('swagger', schema_view),
 ]
