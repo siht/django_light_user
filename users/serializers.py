@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.utils.translation import gettext_lazy as _
 from .models import User
 __all__ = (
     'UserCreationSerializer',
@@ -33,7 +34,7 @@ class UserEditPasswordSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         if data['password'] != data['password_confirm']:
-            raise serializers.ValidationError('password not match')
+            raise serializers.ValidationError(_('password does not match'))
         return data
 
     def update(self, instance, validated_data):
